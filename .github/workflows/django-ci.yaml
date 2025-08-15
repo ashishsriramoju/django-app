@@ -12,9 +12,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: set up python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
+        run: |
+          sudo apt-get update
+          sudo apt get install -y python3-pip
+          python3 -m pip install --upgrade pip
       - name: install dependencies
         run: |
           python -m pip install --upgrade pip
