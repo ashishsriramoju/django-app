@@ -29,6 +29,10 @@ jobs:
           python manage.py migrate
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: build docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/django-app:latest .
+          docker push ghcr.io/${{ github.repository_owner }}/django-app:latest
       - name: run tests
         run: |
           python manage.py test
