@@ -45,7 +45,7 @@ jobs:
       - name: ec2 login
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ec2-65-0-74-140.ap-south-1.compute.amazonaws.com
+          host: ec2-15-207-84-187.ap-south-1.compute.amazonaws.com
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
