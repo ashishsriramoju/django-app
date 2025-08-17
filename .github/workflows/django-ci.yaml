@@ -48,3 +48,9 @@ jobs:
           host: ec2-65-0-74-140.ap-south-1.compute.amazonaws.com
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull ghcr.io/${{ github.repository_owner }}/django-app:latest
+            docker stop django-app || true
+            docker rm django-app || true
+            docker run -d --name django-app -p 8000:8000 ghcr.io/${{ github.repository_owner }}/django-app:latest
+            echo "Deployment completed successfully"
